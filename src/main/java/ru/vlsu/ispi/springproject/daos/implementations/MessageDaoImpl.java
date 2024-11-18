@@ -1,7 +1,7 @@
 package ru.vlsu.ispi.springproject.daos.implementations;
 
 
-import ru.vlsu.ispi.springproject.beans.Message;
+import ru.vlsu.ispi.springproject.models.Message;
 import ru.vlsu.ispi.springproject.daos.interfaces.MessageDao;
 
 import javax.sql.DataSource;

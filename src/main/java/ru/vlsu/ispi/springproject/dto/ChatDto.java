@@ -1,6 +1,6 @@
 package ru.vlsu.ispi.springproject.dto;
 
-import ru.vlsu.ispi.springproject.beans.Chat;
+import ru.vlsu.ispi.springproject.models.Chat;
 
 public class ChatDto {
     private String name;
@@ -14,8 +14,7 @@ public class ChatDto {
     }
 
     public Chat ToChat(){
-        Chat chat = new Chat(0L, this.getName());
-        return chat;
+        return new Chat(0L, this.getName());
     }
 
     public String getName() {

@@ -1,8 +1,8 @@
 package ru.vlsu.ispi.springproject;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.vlsu.ispi.springproject.beans.Chat;
-import ru.vlsu.ispi.springproject.beans.Person;
+import ru.vlsu.ispi.springproject.models.Chat;
+import ru.vlsu.ispi.springproject.models.Person;
 import ru.vlsu.ispi.springproject.daos.interfaces.ChatDao;
 import ru.vlsu.ispi.springproject.daos.interfaces.PersonDao;
 import ru.vlsu.ispi.springproject.dto.PersonDto;

@@ -1,6 +1,6 @@
 package ru.vlsu.ispi.springproject.daos.interfaces;
 
-import ru.vlsu.ispi.springproject.beans.Person;
+import ru.vlsu.ispi.springproject.models.Person;
 
 import java.util.List;
 

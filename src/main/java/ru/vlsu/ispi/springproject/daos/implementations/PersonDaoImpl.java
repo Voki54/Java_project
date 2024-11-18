@@ -1,7 +1,7 @@
 package ru.vlsu.ispi.springproject.daos.implementations;
 
 
-import ru.vlsu.ispi.springproject.beans.Person;
+import ru.vlsu.ispi.springproject.models.Person;
 import ru.vlsu.ispi.springproject.daos.interfaces.PersonDao;
 
 import javax.sql.DataSource;

@@ -36,4 +36,12 @@
         <property name="personDao" ref="personDao" />
         <property name="peopleInChatsDao" ref="peopleInChatsDao" />
     </bean>
+
+    <bean id="confidentialityService" class="ru/vlsu/ispi/springproject/services/ConfidentialityService">
+        <constructor-arg ref="personDao"/>
+    </bean>
+
+    <bean id="changePasswordController" class="ru/vlsu/ispi/springproject/controllers/settings/confidentiality/ChangePasswordController">
+        <constructor-arg ref="confidentialityService"/>
+    </bean>
 </beans>

@@ -1,6 +1,6 @@
 package ru.vlsu.ispi.springproject.daos.implementations;
 
-import ru.vlsu.ispi.springproject.beans.Chat;
+import ru.vlsu.ispi.springproject.models.Chat;
 import ru.vlsu.ispi.springproject.daos.interfaces.ChatDao;
 
 import javax.sql.DataSource;

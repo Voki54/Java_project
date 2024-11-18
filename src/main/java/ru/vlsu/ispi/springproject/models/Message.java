@@ -1,4 +1,4 @@
-package ru.vlsu.ispi.springproject.beans;
+package ru.vlsu.ispi.springproject.models;
 
 import java.time.LocalDateTime;
 

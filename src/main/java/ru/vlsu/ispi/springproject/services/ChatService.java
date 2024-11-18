@@ -1,7 +1,7 @@
 package ru.vlsu.ispi.springproject.services;
 
-import ru.vlsu.ispi.springproject.beans.Chat;
-import ru.vlsu.ispi.springproject.beans.Person;
+import ru.vlsu.ispi.springproject.models.Chat;
+import ru.vlsu.ispi.springproject.models.Person;
 import ru.vlsu.ispi.springproject.daos.interfaces.ChatDao;
 import ru.vlsu.ispi.springproject.daos.interfaces.PeopleInChatsDao;
 import ru.vlsu.ispi.springproject.daos.interfaces.PersonDao;
