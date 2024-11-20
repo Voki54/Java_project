@@ -35,18 +35,8 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="chatService" class="ru.vlsu.ispi.springproject.services.ChatService">
-        <property name="chatDao" ref="chatDao" />
-        <property name="personDao" ref="personDao" />
-        <property name="peopleInChatsDao" ref="peopleInChatsDao" />
-    </bean>
-
-    <bean id="confidentialityService" class="ru/vlsu/ispi/springproject/services/ConfidentialityService">
-        <constructor-arg ref="personDao"/>
-    </bean>
-
-    <bean id="changePasswordController" class="ru/vlsu/ispi/springproject/controllers/ChangePasswordController">
-        <constructor-arg ref="confidentialityService"/>
+    <bean id="blockedUserDao" class="ru.vlsu.ispi.springproject.daos.implementations.BlockedUserDaoImpl">
+        <constructor-arg ref="dataSource"/>
     </bean>
 
     <bean id="AccountService" class="ru.vlsu.ispi.springproject.services.AccountService">
@@ -58,15 +48,15 @@
     </bean>
 
     <bean id="ChatService" class="ru.vlsu.ispi.springproject.services.ChatService">
-
+        <constructor-arg ref="chatDao"/>
+        <constructor-arg ref="personDao"/>
+        <constructor-arg ref="peopleInChatsDao"/>
+        <constructor-arg ref="messageDao"/>
     </bean>
 
     <bean id="ContactService" class="ru.vlsu.ispi.springproject.services.ContactService">
-
-    </bean>
-
-    <bean id="NotificationService" class="ru.vlsu.ispi.springproject.services.NotificationService">
-
+        <property name="blockedUserDao" ref="blockedUserDao" />
+        <property name="personDao" ref="personDao" />
     </bean>
 
     <bean id="AccountController" class="ru.vlsu.ispi.springproject.controllers.AccountController">

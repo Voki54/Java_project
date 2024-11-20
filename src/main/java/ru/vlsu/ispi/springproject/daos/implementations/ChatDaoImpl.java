@@ -18,15 +18,30 @@ public class ChatDaoImpl implements ChatDao {
     }
 
     @Override
-    public void addChat(Chat chat) {
-        String query = "INSERT INTO chat (id, name) VALUES (?, ?)";
+    public Chat addChat(Chat chat) {
+        String query = "INSERT INTO chat (name) VALUES (?)";
+
         try (PreparedStatement statement = dataSource.getConnection().prepareStatement(query)) {
-            statement.setLong(1, chat.getId());
-            statement.setString(2, chat.getName());
-            statement.executeUpdate();
+            statement.setString(1, chat.getName());
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating chat failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    chat.setId(generatedKeys.getLong(1));
+                    return chat;
+                } else {
+                    throw new SQLException("Creating chat failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             System.out.println("Error addChat: " + e.getMessage());
         }
+
+        return null;
     }
 
     @Override

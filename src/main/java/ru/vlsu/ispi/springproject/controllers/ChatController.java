@@ -1,48 +1,71 @@
 package ru.vlsu.ispi.springproject.controllers;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.vlsu.ispi.springproject.dto.ChatEditRequestDto;
-import ru.vlsu.ispi.springproject.dto.ChatRequestDto;
+import ru.vlsu.ispi.springproject.dto.ChatDto;
+import ru.vlsu.ispi.springproject.models.Chat;
+import ru.vlsu.ispi.springproject.models.Message;
+import ru.vlsu.ispi.springproject.models.Person;
+import ru.vlsu.ispi.springproject.services.ChatService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/chats")
 public class ChatController {
-    @PostMapping("/create")
-    public String createChat(@RequestBody ChatRequestDto chatRequest) {
-        // Логика создания чата
+
+    private final ChatService chatService;
+
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
+    @GetMapping("/{\"\", /}")
+    public String displayUserChats(@PathVariable Long personId, Model model) {
+        List<Chat> chats = chatService.getChatsByPersonId(personId);
+        model.addAttribute("members", chats);
         return "/api/chats";
+    }
+
+    @GetMapping("/{chatId}")
+    public String displayChat(@PathVariable Long chatId, Model model) {
+        List<Message> messages = chatService.getChatMessages(chatId);
+        model.addAttribute("members", messages);
+        return "/api/chats" + chatId;
+    }
+
+    @PostMapping("/create")
+    public String createChat(@RequestBody ChatDto chatRequest) {
+        return chatService.createChat(chatRequest);
     }
 
     @PostMapping("/{chatId}/add")
-    public String addUsersToChat(@PathVariable Long chatId, @RequestBody List<Long> userIds) {
-        // Логика добавления пользователей в чат
-        return "/api/chats/" + chatId;
+    public String addPersonToChat(@PathVariable Long chatId, @RequestBody Long personId) {
+        return chatService.addPersonToChat(personId, chatId);
     }
 
     @PostMapping("/{chatId}/exit")
-    public String exitChat(@PathVariable Long chatId) {
-        // Логика выхода из чата
-        return "/api/chats";
+    public String exitChat(@PathVariable Long chatId, @RequestBody Long personId) {
+        return chatService.exitChat(personId, chatId);
     }
 
     @GetMapping("/{chatId}/members")
-    public String viewChatMembers(@PathVariable Long chatId) {
-        // Логика просмотра участников чата
+    public String viewChatMembers(@PathVariable Long chatId, Model model) {
+        List<Person> members = chatService.getChatMembers(chatId);
+
+        model.addAttribute("chatId", chatId);
+        model.addAttribute("members", members);
+
         return "/api/chats/" + chatId + "/members";
     }
 
     @PutMapping("/{chatId}/edit")
-    public String editChat(@PathVariable Long chatId, @RequestBody ChatEditRequestDto editRequest) {
-        // Логика редактирования чата
-        return "/api/chats/" + chatId;
+    public String editChat(@PathVariable Long chatId, @RequestBody ChatDto chatDto) {
+        return chatService.editChat(chatId, chatDto);
     }
 
     @DeleteMapping("/{chatId}")
     public String deleteChat(@PathVariable Long chatId) {
-        // Логика удаления чата
-        return "/api/chats";
+        return chatService.deleteChat(chatId);
     }
 }
