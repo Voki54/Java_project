@@ -20,15 +20,14 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public void addPerson(Person person) {
-        String query = "INSERT INTO person (id, name, surname, birthday, email, password_hash) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO person (name, surname, birthday, email, password_hash) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = dataSource.getConnection().prepareStatement(query)) {
-            statement.setLong(1, person.getId());
-            statement.setString(2, person.getName());
-            statement.setString(3, person.getSurname());
-            statement.setDate(4, java.sql.Date.valueOf(person.getBirthday()));
-            statement.setString(5, person.getEmail());
-            statement.setString(6, person.getPasswordHash());
+            statement.setString(1, person.getName());
+            statement.setString(2, person.getSurname());
+            statement.setDate(3, java.sql.Date.valueOf(person.getBirthday()));
+            statement.setString(4, person.getEmail());
+            statement.setString(5, person.getPasswordHash());
 
             statement.executeUpdate();
         } catch (SQLException e) {

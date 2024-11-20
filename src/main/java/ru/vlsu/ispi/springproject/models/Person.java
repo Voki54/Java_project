@@ -19,6 +19,14 @@ public class Person {
         this.passwordHash = passwordHash;
     }
 
+    public Person(String name, String surname, LocalDate birthday, String email, String passwordHash){
+        this.name = name;
+        this.surname = surname;
+        this.birthday = birthday;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
     public long getId() {
         return id;
     }
