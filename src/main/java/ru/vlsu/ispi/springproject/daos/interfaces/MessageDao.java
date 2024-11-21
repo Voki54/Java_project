@@ -1,6 +1,6 @@
 package ru.vlsu.ispi.springproject.daos.interfaces;
 
-import ru.vlsu.ispi.springproject.beans.Message;
+import ru.vlsu.ispi.springproject.models.Message;
 
 import java.util.List;
 

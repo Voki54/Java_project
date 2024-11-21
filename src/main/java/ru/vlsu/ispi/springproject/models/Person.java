@@ -1,4 +1,4 @@
-package ru.vlsu.ispi.springproject.beans;
+package ru.vlsu.ispi.springproject.models;
 
 import java.time.LocalDate;
 
@@ -12,6 +12,14 @@ public class Person {
 
     public Person(long id, String name, String surname, LocalDate birthday, String email, String passwordHash){
         this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.birthday = birthday;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
+    public Person(String name, String surname, LocalDate birthday, String email, String passwordHash){
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;

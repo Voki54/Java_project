@@ -1,4 +1,4 @@
-package ru.vlsu.ispi.springproject.beans;
+package ru.vlsu.ispi.springproject.models;
 
 public class Chat {
     private long id;

@@ -27,13 +27,51 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
+    <bean id="notificationDao" class="ru.vlsu.ispi.springproject.daos.implementations.NotificationDaoImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
     <bean id="peopleInChatsDao" class="ru.vlsu.ispi.springproject.daos.implementations.PeopleInChatsDaoImpl">
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="chatService" class="ru.vlsu.ispi.springproject.services.ChatService">
-        <property name="chatDao" ref="chatDao" />
+    <bean id="blockedUserDao" class="ru.vlsu.ispi.springproject.daos.implementations.BlockedUserDaoImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="AccountService" class="ru.vlsu.ispi.springproject.services.AccountService">
+        <constructor-arg ref="personDao"/>
+    </bean>
+
+    <bean id="NotificationService" class="ru.vlsu.ispi.springproject.services.NotificationService">
+        <constructor-arg ref="notificationDao"/>
+    </bean>
+
+    <bean id="ChatService" class="ru.vlsu.ispi.springproject.services.ChatService">
+        <constructor-arg ref="chatDao"/>
+        <constructor-arg ref="personDao"/>
+        <constructor-arg ref="peopleInChatsDao"/>
+        <constructor-arg ref="messageDao"/>
+    </bean>
+
+    <bean id="ContactService" class="ru.vlsu.ispi.springproject.services.ContactService">
+        <property name="blockedUserDao" ref="blockedUserDao" />
         <property name="personDao" ref="personDao" />
-        <property name="peopleInChatsDao" ref="peopleInChatsDao" />
+    </bean>
+
+    <bean id="AccountController" class="ru.vlsu.ispi.springproject.controllers.AccountController">
+        <constructor-arg ref="AccountService"/>
+    </bean>
+
+    <bean id="ChatController" class="ru.vlsu.ispi.springproject.controllers.ChatController">
+        <constructor-arg ref="ChatService"/>
+    </bean>
+
+    <bean id="ContactController" class="ru.vlsu.ispi.springproject.controllers.ContactController">
+        <constructor-arg ref="ContactService"/>
+    </bean>
+
+    <bean id="NotificationController" class="ru.vlsu.ispi.springproject.controllers.NotificationController">
+        <constructor-arg ref="NotificationService"/>
     </bean>
 </beans>

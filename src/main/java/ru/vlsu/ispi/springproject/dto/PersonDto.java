@@ -1,7 +1,7 @@
 package ru.vlsu.ispi.springproject.dto;
 
 
-import ru.vlsu.ispi.springproject.beans.Person;
+import ru.vlsu.ispi.springproject.models.Person;
 
 import java.time.LocalDate;
 
