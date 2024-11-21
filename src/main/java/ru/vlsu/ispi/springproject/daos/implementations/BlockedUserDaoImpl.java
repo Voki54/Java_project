@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockedUserDaoImpl implements BlockedUserDao {
     private final DataSource dataSource;
@@ -46,5 +48,21 @@ public class BlockedUserDaoImpl implements BlockedUserDao {
         } catch (SQLException e) {
             System.out.println("Error deleteBlockedUser: " + e.getMessage());
         }
+    }
+
+    public List<Long> getBlockedUserIdsByPersonId(long personId) {
+        String query = "SELECT blockedUserId FROM chat WHERE personId = ?";
+        List<Long> blockedUserIds = new ArrayList<>();
+        try (PreparedStatement statement = dataSource.getConnection().prepareStatement(query)) {
+            statement.setLong(1, personId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    blockedUserIds.add(resultSet.getLong("chat_id"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getBlockedUserIdsByPersonId: " + e.getMessage());
+        }
+        return blockedUserIds;
     }
 }

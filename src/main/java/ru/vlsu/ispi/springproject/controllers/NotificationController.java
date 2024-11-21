@@ -6,7 +6,7 @@ import ru.vlsu.ispi.springproject.dto.NotificationSettingsRequestDto;
 import ru.vlsu.ispi.springproject.services.NotificationService;
 
 @RestController
-@RequestMapping("/api/account/settings/notifications")
+@RequestMapping("/settings/notifications")
 public class NotificationController {
 
     private final NotificationService notificationService;

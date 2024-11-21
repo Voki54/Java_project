@@ -9,7 +9,7 @@ import ru.vlsu.ispi.springproject.dto.RegistrationRequestDto;
 import ru.vlsu.ispi.springproject.services.AccountService;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/account")
 public class AccountController {
 
     private final AccountService accountService;

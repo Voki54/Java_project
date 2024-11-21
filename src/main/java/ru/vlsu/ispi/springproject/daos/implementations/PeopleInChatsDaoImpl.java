@@ -37,7 +37,7 @@ public class PeopleInChatsDaoImpl implements PeopleInChatsDao {
     @Override
     public List<Long> getAllChatIdByPersonId(long personId) {
         String query = "SELECT chat_id FROM person_chat_link WHERE person_id = ?";
-        ArrayList<Long> chatId = new ArrayList<>();
+        List<Long> chatId = new ArrayList<>();
 
         try (PreparedStatement statement = dataSource.getConnection().prepareStatement(query)) {
             statement.setLong(1, personId);

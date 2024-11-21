@@ -11,7 +11,7 @@ import ru.vlsu.ispi.springproject.services.ChatService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chats")
+@RequestMapping("/chats")
 public class ChatController {
 
     private final ChatService chatService;
@@ -24,14 +24,14 @@ public class ChatController {
     public String displayUserChats(@PathVariable Long personId, Model model) {
         List<Chat> chats = chatService.getChatsByPersonId(personId);
         model.addAttribute("members", chats);
-        return "/api/chats";
+        return "/chats";
     }
 
     @GetMapping("/{chatId}")
     public String displayChat(@PathVariable Long chatId, Model model) {
         List<Message> messages = chatService.getChatMessages(chatId);
         model.addAttribute("members", messages);
-        return "/api/chats" + chatId;
+        return "/chats" + chatId;
     }
 
     @PostMapping("/create")
@@ -52,11 +52,9 @@ public class ChatController {
     @GetMapping("/{chatId}/members")
     public String viewChatMembers(@PathVariable Long chatId, Model model) {
         List<Person> members = chatService.getChatMembers(chatId);
-
         model.addAttribute("chatId", chatId);
         model.addAttribute("members", members);
-
-        return "/api/chats/" + chatId + "/members";
+        return "/chats/" + chatId + "/members";
     }
 
     @PutMapping("/{chatId}/edit")
